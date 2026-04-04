@@ -48,6 +48,17 @@ void addBook() {
     printf("Book Added Successfully!\n");
 }
 
+#include <stdio.h>
+#include <string.h
+#include "addnewbook.h"
+void addnewbook(add_book*b,char*title,char*author,int quantity,float price,int publication_year){
+strcpy(b->title,title);
+strcpy(b->author,auther);
+b->quantity=quantity;
+b->price=price;
+b->publication_year=publication_year;
+printf("Book added successfully!\n");
+}
 // ---------------- DISPLAY BOOKS ----------------
 void displayBooks() {
     struct Book b;
@@ -136,3 +147,73 @@ void deleteBook() {
     printf("Book Deleted!\n");
 }
 
+#ifndef ADDNEWBOOK_H
+#define ADDNEWBOOK_H
+struct addnewbook {
+    int book_id;
+    char title[100];
+    char author[100];
+    int quantity;
+    float price;
+    int publication_year;
+ };
+ void addnewbook(add_book*b,char*title,char*author,int quantity,float price,int publication_year);
+ #endif
+ #ifndef DIAPLAYBOOK_H
+#define DISPLAYBOOK_H
+#include <iostream>
+#include<string.h>
+#include "bookquantityfile.h"
+using namespace std;
+struct displaybook
+{
+    char title[100];
+    char author[20];
+    int book_id;
+};
+void displayAvailableBooks(const vector<book>& books) {
+    cout << "Available Books:" << endl;
+    bool found = false;
+    for (const auto& b : books) {
+        cout << "Book ID: " << b.book_id << endl;
+        cout << "Title: " << b.title << endl;
+        cout << "Author: " << b.author << endl;
+        cout << "Quantity: " << b.quantity << endl;
+        cout << "-------------------------" << endl;
+        found = true;
+    }
+}
+    if (!found) {
+        cout << "No books available." << endl;
+    }
+}
+#endif
+#include <stdio.h>  
+#include <string>
+struct searchforbook
+{
+    char title[100];
+    char author[20];
+    int book_id;
+};
+int main(){
+    struct searchforbook searchbook
+    printf("enter the book title");
+    scanf("%s",searchbook.title);
+    printf("enter the book author");
+    scanf("%s",searchbook.author);
+    printf("enter the book id");
+    scanf("%d",&searchbook.book_id);
+    return 0;
+}
+#include <stdio.h>
+#include <string.h
+#include "addnewbook.h"
+void addnewbook(add_book*b,char*title,char*author,int quantity,float price,int publication_year){
+strcpy(b->title,title);
+strcpy(b->author,auther);
+b->quantity=quantity;
+b->price=price;
+b->publication_year=publication_year;
+printf("Book added successfully!\n");
+}
