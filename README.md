@@ -1,162 +1,105 @@
-#  Library Management System in C
-
-##  Project Title
-
-**Library Management System**
-
----
-
-##  Objective
-
-The objective of this project is to design and implement a **menu-driven Library Management System using C programming**.
-This project helps in understanding and applying core C concepts such as:
-
-* Structures
-* File Handling
-* Arrays
-* Pointers
-* Functions
-* Control Statements
-
----
-
-##  Project Description
-
-This system simulates a real-world **library environment** where two types of users can interact:
-
-1. **Administrator (Librarian)**
-2. **Library User (Member)**
-
-The system allows management of:
-
-* Books
-* Users
-* Transactions (Borrow & Return)
-
-It is a **menu-driven program**, making it user-friendly and interactive.
-
----
-
-## ⚙️ Features / Functionalities
-
-### 📖 1. Book Management
-
-* Add new books (ID, Title, Author, Publication, Quantity, Category)
-* Display all books
-* Search books by:
-
-  * Title
-  * Author
-  * ID
-  * Category
-* Update book details
-* Delete books
-* Auto-update quantity on borrow/return
-
----
-
-###  2. User Management
-
-* Register new users
-* View all users
-* Edit user details
-* Delete users
-* User login authentication
-
----
-
-### 🔄 3. Borrowing & Returning System
-
-* Borrow books (with limit per user)
-* Store borrowing & return dates
-* Return books and update stock
-* View borrowing history
-
----
-
-###  4. Administrator Features
-
-* Admin login (predefined credentials)
-* Manage books and users
-* View transaction reports
-* Backup system data
-
----
-
-###  5. File Handling
-
-Data is stored permanently using files:
-
-* `books.txt`
-* `users.txt`
-* `transactions.txt`
-
----
-
-##  Sample Output
-
-```
-==== Welcome to Library Management System ====
-1. Login as User
-2. Login as Admin
-3. Register as New User
-4. Exit
-Enter choice: 2
-
---- Admin Login ---
+Library Management System (C Project)
+ About Project
+This is a simple Library Management System made using C language.
+It is a menu-driven program which helps to manage users and books.
+=> Features
+# User Part
+* Register user
+* Login user
+* Update user
+* Delete user
+# Book Part (Admin)
+* Add book
+* Delete book
+* View books
+# Other Functions
+* Borrow book
+* Return book
+# Admin Login
 Username: admin
-Password: ****
+Password: admin123
+# Files Used
+* users.txt (stores user data)
+* books.txt (stores book data)
+* temp.txt (used for update/delete)
+# How to Run
+1. Compile the code:
+gcc filename.c -o library
+2. Run the program:
+./library
+# What I Learned
+* Use of structures in C
+* File handling (read/write)
+* Menu-driven programs
+* Basic project making
+# out put format of this code :
+===== LIBRARY MANAGEMENT SYSTEM =====
+1. Register User
+2. Login User
+3. Update User
+4. Delete User
+5. Admin Login
+6. View Books
+7. Borrow Book
+8. Return Book
+9. Exit
 
-===== Admin Menu =====
-1. Add New Book
-2. View All Books
-3. Manage Users
-4. View Borrow Records
-5. Logout
+Enter Choice: 1
 
-Enter your choice: 1
+Enter User ID: 101
+Enter Name: Divya
+Enter Password: 1234
+User Registered Successfully!
+### Admin Login
+Enter Choice: 5
 
-Enter Book ID: 101
-Enter Title: C Programming
-Enter Author: Dennis Ritchie
-Enter Publication: PHI
+Enter Admin Username: admin
+Enter Admin Password: admin123
+
+1. Add Book
+2. Delete Book
+3. Logout
+
+Enter Choice: 1
+
+Enter Book ID: 1
+Enter Title: CProgramming
+Enter Author: Dennis
 Enter Quantity: 5
 
-Book added successfully!
-```
+Book Added Successfully!
 
----
+# View Books
+Enter Choice: 6
 
-##  Technologies Used
+---- Book List ----
+ID:1  Title:CProgramming  Author:Dennis  Qty:5
+#Borrow Book
+Enter Choice: 7
 
-* **Programming Language:** C
-* **Concepts Used:** File Handling, Structures, Functions, Arrays, Pointers
+Enter Book ID to Borrow: 1
+Book Borrowed Successfully!
+# Return Book
+Enter Choice: 8
 
----
+Enter Book ID to Return: 1
+Book Returned Successfully!
+# CONTRIBUTION PART :
+This project was developed as a team work. Each member worked on different modules:
+1. User Management ( divya b25ph1004)
+   * Register User
+   * Login User
+   * Update User
+   * Delete User
+2. Book Management(navya b25cs1042)
+   * Add Book
+   * Delete Book
+   * View Books
+3. Admin Module( avani b25ch1009)
+   * Admin Login
+   * Manage Book Operations
+4. Borrow and Return System (sahana b25ph1013)
+   * Borrow Book
+   * Return Book
+All modules were combined together to form the complete Library Management System.
 
-## How to Run the Project
-
-1. Open the project in any C compiler (Turbo C / GCC / VS Code)
-2. Compile the program:
-
-   ```
-   gcc library.c -o library
-   ```
-3. Run the program:
-
-   ```
-   ./library
-   ```
-
----
-
-##  Future Enhancements
-
-* Add GUI (using C++ or Python)
-* Online database integration
-* Fine calculation for late returns
-* Barcode-based book tracking
-
----
-
-This project is for educational purposes only.
