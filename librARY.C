@@ -44,10 +44,14 @@ void registerUser()
 void updateUser()
 {
     struct User u;
-    int id;
+    int id , found =0;
 
     FILE *fp = fopen("users.txt","r");
     FILE *temp = fopen("temp.txt","w");
+    if (fp == NULL){
+        printf("No users found\n");
+        return ;
+    }
 
     printf("Enter User ID to update: ");
     scanf("%d",&id);
@@ -56,6 +60,8 @@ void updateUser()
     {
         if(u.id==id)
         {
+            found = 1;
+        
             printf("Enter New Name: ");
             scanf("%s",u.name);
 
@@ -64,24 +70,31 @@ void updateUser()
 
             printf("User Updated!\n");
         }
-
+        
         fprintf(temp,"%d %s %s\n",u.id,u.name,u.password);
-    }
+        }
+    
 
     fclose(fp);
     fclose(temp);
 
     remove("users.txt");
     rename("temp.txt","users.txt");
+    if(!found)
+    printf("User ID not found\n");
 }
 
 void deleteUser()
 {
     struct User u;
-    int id;
+    int id , found =0;
 
     FILE *fp = fopen("users.txt","r");
     FILE *temp = fopen("temp.txt","w");
+    if(fp == NULL){
+        printf("No users found \n");
+        return ;
+    }
 
     printf("Enter User ID to delete: ");
     scanf("%d",&id);
@@ -89,6 +102,10 @@ void deleteUser()
     while(fscanf(fp,"%d %s %s",&u.id,u.name,u.password)!=EOF)
     {
         if(u.id!=id)
+        {
+            found =1 ;
+        }
+        else 
         {
             fprintf(temp,"%d %s %s\n",u.id,u.name,u.password);
         }
@@ -99,8 +116,11 @@ void deleteUser()
 
     remove("users.txt");
     rename("temp.txt","users.txt");
+    if(found)
 
     printf("User Deleted Successfully\n");
+    else 
+    printf("User ID not found\n");
 }
 
 int loginUser()
@@ -176,10 +196,16 @@ void viewBooks()
 void deleteBook()
 {
     struct Book b;
-    int id;
+    int id , found =0;
 
     FILE *fp = fopen("books.txt","r");
     FILE *temp = fopen("temp.txt","w");
+    
+    if (fp == NULL)
+    {
+        printf("NO books available\n");
+        return;
+    }
 
     printf("Enter Book ID to delete: ");
     scanf("%d",&id);
@@ -187,6 +213,10 @@ void deleteBook()
     while(fscanf(fp,"%d %s %s %d",&b.id,b.title,b.author,&b.quantity)!=EOF)
     {
         if(b.id!=id)
+        {
+            found = 1;
+        }
+        else
         {
             fprintf(temp,"%d %s %s %d\n",b.id,b.title,b.author,b.quantity);
         }
@@ -197,8 +227,11 @@ void deleteBook()
 
     remove("books.txt");
     rename("temp.txt","books.txt");
-
+    
+    if(found)
     printf("Book Deleted Successfully\n");
+    else
+    printf("Book ID not found\n");
 }
 
 // BORROW & RETURN 
@@ -294,13 +327,10 @@ int main()
         printf("\n===== LIBRARY MANAGEMENT SYSTEM =====\n");
         printf("1. Register User\n");
         printf("2. Login User\n");
-        printf("3. Update User\n");
-        printf("4. Delete User\n");
+       
         printf("5. Admin Login\n");
-        printf("6. View Books\n");
-        printf("7. Borrow Book\n");
-        printf("8. Return Book\n");
-        printf("9. Exit\n");
+        
+        printf("6. Exit\n");
 
         printf("Enter Choice: ");
         scanf("%d",&choice);
@@ -308,10 +338,25 @@ int main()
         switch(choice)
         {
             case 1: registerUser(); break;
-            case 2: userId = loginUser(); break;
-            case 3: updateUser(); break;
-            case 4: deleteUser(); break;
-
+            case 2: 
+            if (userId = loginUser())
+            { 
+                int ch;
+                do {
+                    printf("\n 1.Uapdate User \n 2.Delete User \n 3.View Books\n 4.Borrow Books\n 5.Return Book\n 6.Logout \n");
+                    scanf("%d",&ch);
+                    if(ch==1) updateUser();
+                    else if(ch==2) deleteUser();
+                    else if(ch==3) viewBooks();
+                    else if(ch==4) borrowBook(userId);
+                    else if (ch==5) returnBook();
+                } while (ch!=6);
+                }
+                else 
+                printf("Invalid User Login \n");
+                 break;
+            
+            
             case 5:
                 if(adminLogin())
                 {
@@ -329,18 +374,8 @@ int main()
                     printf("Invalid Admin Login\n");
                 break;
 
-            case 6: viewBooks(); break;
-
-            case 7:
-                if(userId!=-1)
-                    borrowBook(userId);
-                else
-                    printf("Please login first\n");
-                break;
-
-            case 8: returnBook(); break;
-
-            case 9: exit(0);
+            
+            case 6: exit(0);
 
             default: printf("Invalid Choice\n");
         }
