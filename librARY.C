@@ -210,11 +210,16 @@ void deleteBook()
     printf("Enter Book ID to delete: ");
     scanf("%d",&id);
 
-    while(fscanf(fp,"%d %s %s %d",&b.id,b.title,b.author,&b.quantity)!=EOF)
+    while(1)
+    { if(fscanf(fp,"%d %s %s %d",&b.id,b.title,b.author,&b.quantity)!=EOF)
     {
-        if(b.id!=id)
+        break;
+    }
+    printf("checking Book id : %d\n",b.id);
+        if(b.id=id)
         {
             found = 1;
+            printf("match found -> delete book\n");
         }
         else
         {
@@ -228,7 +233,7 @@ void deleteBook()
     remove("books.txt");
     rename("temp.txt","books.txt");
     
-    if(found)
+    if(found==1)
     printf("Book Deleted Successfully\n");
     else
     printf("Book ID not found\n");
