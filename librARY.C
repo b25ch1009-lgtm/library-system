@@ -72,12 +72,8 @@ void updateUser()
 
             printf("User Updated!\n");
         }
-        
+  }
         fprintf(temp,"%d %s %s\n",u.id,u.name,u.password);
-        }
-   
-
-
     fclose(fp);
     fclose(temp);
 
@@ -214,20 +210,14 @@ void deleteBook()
     printf("Enter Book ID to delete: ");
     scanf("%d",&id);
 
-    while(1)
-    { if(fscanf(fp,"%d %s %s %d",&b.id,b.title,b.author,&b.quantity)!=EOF)
-    {
-        break;
-    }
-    printf("checking Book id : %d\n",b.id);
-        if(b.id=id)
-        {
-            found = 1;
-            printf("match found -> delete book\n");
-        }
-        else
+    while(fscanf(fp,"%d %s %s %d",&b.id,b.title,b.author,&b.quantity)!=EOF) 
+   {
+        if(b.id!=id)
         {
             fprintf(temp,"%d %s %s %d\n",b.id,b.title,b.author,b.quantity);
+        }
+        else{
+            found=1;
         }
     }
 
@@ -237,7 +227,7 @@ void deleteBook()
     remove("books.txt");
     rename("temp.txt","books.txt");
     
-    if(found==1)
+    if(found)
     printf("Book Deleted Successfully\n");
     else
     printf("Book ID not found\n");
