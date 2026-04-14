@@ -56,9 +56,11 @@ void updateUser()
     printf("Enter User ID to update: ");
     scanf("%d",&id);
 
-    while(fscanf(fp,"%d %s %s",&u.id,u.name,u.password)!=EOF)
-    {
-        if(u.id==id)
+    while
+
+  (fscanf(fp,"%d %s %s",&u.id,u.name,u.password)!=EOF) {
+    
+    if(u.id==id)
         {
             found = 1;
         
@@ -73,7 +75,8 @@ void updateUser()
         
         fprintf(temp,"%d %s %s\n",u.id,u.name,u.password);
         }
-    
+   
+
 
     fclose(fp);
     fclose(temp);
@@ -99,15 +102,15 @@ void deleteUser()
     printf("Enter User ID to delete: ");
     scanf("%d",&id);
 
-    while(fscanf(fp,"%d %s %s",&u.id,u.name,u.password)!=EOF)
-    {
+    while(fscanf(fp,"%d %s %s",&u.id,u.name,u.password)!=EOF) {
+    
         if(u.id!=id)
         {
-            found =1 ;
-        }
+           fprintf(temp,"%d %s %s /n",u.id,u.name,u.password);
+                }
         else 
         {
-            fprintf(temp,"%d %s %s\n",u.id,u.name,u.password);
+            found=1;
         }
     }
 
@@ -116,8 +119,9 @@ void deleteUser()
 
     remove("users.txt");
     rename("temp.txt","users.txt");
-    if(found)
 
+
+    if(found)
     printf("User Deleted Successfully\n");
     else 
     printf("User ID not found\n");
@@ -139,7 +143,7 @@ int loginUser()
 
     while(fscanf(fp,"%d %s %s",&u.id,u.name,u.password)!=EOF)
     {
-        if(u.id==id && strcmp(u.password,pass)==0)
+        if((u.id==id && strcmp(u.password,pass))==0)
         {
             fclose(fp);
             printf("Login Successful!\n");
